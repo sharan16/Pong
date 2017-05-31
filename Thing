@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -11,6 +12,7 @@ public class Thing {
 	// Creating the class data
 	private Rectangle2D.Double body;
 	private JLabel bodyLbl;
+	private ImageIcon img;
 	private String imgName;
 	private int x, y, w, h;
 
@@ -28,7 +30,7 @@ public class Thing {
 		this.h = h;
 		this.bodyLbl = new JLabel ();
 		bodyLbl.setBounds (x, y, w, h);
-		
+
 		new Rectangle2D.Double (x, y, w, h);
 	}
 
@@ -40,18 +42,20 @@ public class Thing {
 		this.bodyLbl = new JLabel ();
 		bodyLbl.setBounds (x, y, w, h);
 		bodyLbl.setBackground (c);
-		
+
 		new Rectangle2D.Double (x, y, w, h);
 	}
 
-	public Thing (int x, int y, int w, int h, String imgName) {
+	public Thing (int x, int y, String imgName) {
 		this.x = x;
 		this.y = y;
-		this.w = w;
-		this.h = h;
+		this.img = new ImageIcon (imgName);
+		this.w = img.getIconWidth ();
+		this.h = img.getIconHeight ();
 		this.imgName = imgName;
 		this.bodyLbl = new JLabel (imgName);
-		
+		bodyLbl.setSize(w, h);
+
 		new Rectangle2D.Double (x, y, w, h);
 	}
 
