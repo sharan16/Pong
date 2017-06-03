@@ -22,7 +22,7 @@ public class PlayerList {
         //Default Constructor
         public PlayerList() 
         {
-        	maxSize = 50;
+        	maxSize = 1000;
             size = 0;
             playerRecordList = new PlayerRecord [maxSize];
         }
@@ -58,19 +58,19 @@ public class PlayerList {
         {
         	if (size<maxSize) //Check For Space
             {
-        		 size++;
-                 playerRecordList[size-1] = record;
-                 return true;
+        		size++;
+                playerRecordList[size-1] = record;
+                return true;
             }
             return false;
         }
         //Method To Delete Player Record
         public boolean delete (PlayerRecord record)
         {
-        	//get location of the record using the binary search method
+        	//Get Location Of Record 
             int location = binarySearchUser(record.getUserName());
 
-            //swap the particular record with the last element
+            //Swap With Last Element 
             if (location>=0)
             {
             	playerRecordList[location] = playerRecordList[size-1];
@@ -87,13 +87,13 @@ public class PlayerList {
             playerRecordList[first] = playerRecordList[second]; //Swap Order
             playerRecordList[second] = hold;      
         }
-        //Method To Bubble Sort
+        //Method To Bubble Sort (User Name)
         public void bubbleSortUser()
         {
             //Loop To Control Passes
-            for (int j = 0; j< size - 1;j++)
+            for (int j = 0; j < size - 1; j++)
             {
-            	for (int i = 0; i< size-j-1; i++)
+            	for (int i = 0; i < size-j-1; i++)
                 {
                 	if (playerRecordList[i].getUserName().compareToIgnoreCase(playerRecordList[i+1].getUserName())>0)
                     {
@@ -101,22 +101,6 @@ public class PlayerList {
                     }
                 }
             }  
-        }
-        //Method To Ripple Sort (User Name)
-        public void rippleSortUser()
-        {
-        	for (int i = 0; i <= size -2;i++)
-            {
-            	for (int j = i + 1; j <= size - 1; j++)
-                {
-                	//Ascending Alphabetical Order
-                    if (playerRecordList[j].getUserName().compareToIgnoreCase(playerRecordList[i].getUserName())<0)
-                    {
-                    	//Swap If Not In Order
-                        swap (j, i);
-                    }
-                }
-            }
         }
         //Method For Binary Search (UserName)
         public int binarySearchUser(String searchKey)
@@ -171,3 +155,4 @@ public class PlayerList {
         	//
         } //End Main
 } //End Program
+
