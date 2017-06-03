@@ -8,7 +8,8 @@
 public class PlayerRecord {
 	
 	private String userName, passWord;
-	private int score, tokens;
+	private int wins, losses, tokens;
+	private double winPercentage;
 	
 	//Method To Set User Name
 	public void setUserName (String userName)
@@ -20,10 +21,20 @@ public class PlayerRecord {
 	{
 		this.passWord = passWord;
 	}
-	//Method To Set Score
-	public void setScore (int score)
+	//Method To Set Wins
+	public void setWins (int wins)
 	{
-		this.score = score;
+		this.wins = wins;
+	}
+	//Method To Set Losses
+	public void setLosses (int losses)
+	{
+		this.losses = losses;
+	}
+	//Method To Set Win %
+	public void setWinPercentage (double winPercentage)
+	{
+		this.winPercentage = winPercentage;
 	}
 	//Method To Set Tokens 
 	public void setTokens (int tokens)
@@ -36,14 +47,24 @@ public class PlayerRecord {
 		return userName;
 	}
 	//Method To Get Pass Word
-	public String getPassword()
+	public String getPassWord()
 	{
 		return passWord;
 	}
-	//Method To Get Score 
-	public int getScore()
+	//Method To Get Wins
+	public int getWins()
 	{
-		return score;
+		return wins;
+	}
+	//Method To Get Losses
+	public int getLosses()
+	{
+		return losses;
+	}
+	//Method To Get Win %
+	public double getWinPercentage()
+	{
+		return winPercentage;
 	}
 	//Method To Get Tokens 
 	public int getTokens()
@@ -58,18 +79,25 @@ public class PlayerRecord {
 
         this.userName = word [0];
         this.passWord = word [1];
-        this.score = Integer.parseInt(word [2]);
-        this.tokens = Integer.parseInt(word [3]);
+        this.wins = Integer.parseInt(word [2]);
+        this.losses = Integer.parseInt(word [3]);
+        this.winPercentage = Double.parseDouble(word [4]);
+        this.tokens = Integer.parseInt(word [5]);
     }
 	//Method To Return Processed Info As A String
-    public String toString()
+	public String toString()
     { 
-        return getUserName() + "," + this.score + "," + this.tokens;
+		return this.userName + "," + this.passWord + "," + this.wins + "," + this.losses + "," 
+                            + this.winPercentage + "," + this.tokens;
     }
     //Self-Testing Main Method
-    static void main (String args[])
+    public static void main (String args[])
     {
     	//
     } //End Main
 } // End Program
-s
+
+      
+        
+       
+
