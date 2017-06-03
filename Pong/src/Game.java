@@ -27,7 +27,7 @@ public class Game extends JFrame implements ActionListener, KeyListener{
 		//Setting the frame
 		frame = getContentPane();
 		frame.setLayout (null);
-		timer= new Timer(25,this);
+		timer= new Timer(10,this);
 		//
 		 paddle=new Paddle(20,50,"Images/paddle.png");
 		 paddle2=new Paddle(980,50,"Images/paddle.png");
