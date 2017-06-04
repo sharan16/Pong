@@ -1,5 +1,7 @@
+import java.text.NumberFormat;
+
 /*
- * Author: Raman Saini 
+ *  Author: Raman Saini 
  * Date: May 2017
  * Desc: PlayerRecord Class For Pong
  * Method List:
@@ -75,7 +77,7 @@ public class PlayerRecord {
 	public void process(String record)
 	{
 		String word [];
-        word = record.split(",");
+        word = record.split(";");
 
         this.userName = word [0];
         this.passWord = word [1];
@@ -93,9 +95,35 @@ public class PlayerRecord {
     //Self-Testing Main Method
     public static void main (String args[])
     {
-    	//
+    	//Variable For Record
+        String record  = "Raman_2ESY, pass123, 9, 1, 90, 1000";
+
+        //Create PlayerRecord Object
+        PlayerRecord playerRecord = new PlayerRecord();
+
+        //---[Process Record Testing]----
+        //Process The Record
+        playerRecord.process(record);
+        
+        //---[toString Testing]---
+        //Display Record
+        System.out.println("Processed Record:" + playerRecord.toString());
+
+        //--[Getter Method Testing]----
+        System.out.println("User Name: " + playerRecord.getUserName());
+        System.out.println("Pass Word: " + playerRecord.getPassWord());
+        System.out.println("Wins: " + playerRecord.getWins());
+        System.out.println("Losses: " + playerRecord.getLosses());
+        System.out.println("Win %: " + playerRecord.getWinPercentage());
+        System.out.println("Tokens: " + playerRecord.getTokens());
     } //End Main
 } // End Program
+
+      
+        
+       
+
+
 
       
         
