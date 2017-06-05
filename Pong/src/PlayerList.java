@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -149,10 +152,25 @@ public class PlayerList {
                 }
                 inputFile.close(); //Close Input File
         }
+        //Method To Write To File
+        public void writeToFile (String fileName) throws IOException 
+        {
+        	//Open File To Read
+            FileWriter file = new FileWriter (fileName);
+            PrintWriter outputFile = new PrintWriter (file); 
+
+            //Loop Through Array 
+            for (int i = 0; i < size; i++) 
+            {
+            	outputFile.println(playerRecordList[i]);
+            }
+            outputFile.close(); //close input file
+        }
         //Self-Testing Main
         static void main (String args[])
         {
         	//
         } //End Main
 } //End Program
+
 
