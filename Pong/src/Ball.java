@@ -22,8 +22,20 @@ public class Ball extends Thing {
 	}
 	
 	private void collisionCheck(Thing blocks[],Paddle paddle,Paddle paddle2){
+		double directionMod;
 		if(this.getBody().intersects(paddle.getBody())||this.getBody().intersects(paddle2.getBody())){
-			velX=-velX;
+			if(velX>0){
+			velX = -Math.abs(velX);
+            velX -= 1;
+            directionMod = super.getY() - (paddle2.getY() + paddle2.getH()/2);
+			}
+			else{
+				velX = Math.abs(velX);
+	            velX += 1;
+	            directionMod = super.getY() - (paddle.getY() + paddle.getH()/2);
+			}
+            
+            velY = (int)(directionMod / 16);
 		}
 		for (int i = 0; i < blocks.length; i++) {
 			if (this.getBody().intersects(blocks[i].getBody())) {
