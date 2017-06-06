@@ -1,11 +1,11 @@
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.geom.*;
+
 /**
  * @author Bikramjit Saini
  * Date: 5/29/2017
- * Desc: The Thing class
+ * Desc: Thing class
  */
 public class Thing {
 	// Creating the class data
@@ -18,7 +18,7 @@ public class Thing {
 	// Creating the default constructor
 	public Thing () {
 		this.bodyLbl = new JLabel ();
-		this.body=new Rectangle2D.Double ();
+		this.body = new Rectangle2D.Double ();
 	}
 
 	// Creating overloaded constructors
@@ -29,7 +29,7 @@ public class Thing {
 		this.h = h;
 		this.bodyLbl = new JLabel ();
 		bodyLbl.setBounds (x, y, w, h);
-		this.body=new Rectangle2D.Double (x, y, w, h);
+		this.body = new Rectangle2D.Double (x, y, w, h);
 	}
 
 	public Thing (int x, int y, int w, int h, Color c) {
@@ -40,7 +40,7 @@ public class Thing {
 		this.bodyLbl = new JLabel ();
 		bodyLbl.setBounds (x, y, w, h);
 		bodyLbl.setBackground (c);
-		this.body=new Rectangle2D.Double (x, y, w, h);
+		this.body = new Rectangle2D.Double (x, y, w, h);
 	}
 
 	public Thing (int x, int y, String imgName) {
@@ -52,7 +52,7 @@ public class Thing {
 		this.imgName = imgName;
 		this.bodyLbl = new JLabel (this.img);
 		bodyLbl.setBounds(x,y,w, h);
-		this.body=new Rectangle2D.Double (x, y, w, h);
+		this.body = new Rectangle2D.Double (x, y, w, h);
 	}
 
 	// Creating the getters and setters
@@ -108,9 +108,9 @@ public class Thing {
 		this.h = h;
 	}
 	public void update(){
-		bodyLbl.setBounds(x,y,w, h);
+		bodyLbl.setBounds (x,y,w, h);
 		//bodyLbl.repaint();
-		this.body=new Rectangle2D.Double (x, y, w, h);
+		this.body = new Rectangle2D.Double (x, y, w, h);
 	}
 	// Creating the self-testing main method
 	public static void main (String[] args) {
