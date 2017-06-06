@@ -31,22 +31,23 @@ public class PongGUI extends JFrame implements ActionListener {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		welExit = new JButton (new ImageIcon ("exitBtn.jpg"));
+		welExit = new JButton (new ImageIcon ("Images/exitBtn.jpg"));
 		welExit.setBounds(440, 635, 117, 48);
+		welExit.setBorderPainted(false);
 		welExit.addActionListener(this);
 		welPage.add(welExit);
 
-		welLogin = new JButton (new ImageIcon ("loginBtn.jpg"));
+		welLogin = new JButton (new ImageIcon ("Images/loginBtn.jpg"));
 		welLogin.setBounds(64, 403, 428, 197);
 		welLogin.addActionListener(this);
 		welPage.add(welLogin);
 
-		welCreate = new JButton (new ImageIcon ("createBtn.jpg"));
+		welCreate = new JButton (new ImageIcon ("Images/createBtn.jpg"));
 		welCreate.setBounds(512, 403, 428, 197);
 		welCreate.addActionListener(this);
 		welPage.add(welCreate);
 
-		background = new Picture(0,0,new ImageIcon("welcome.jpg"));
+		background = new Picture(0,0,new ImageIcon("Images/welcome.jpg"));
 		background.setBounds(0,0,1000,720);
 		welPage.add(background);
 
@@ -60,6 +61,10 @@ public class PongGUI extends JFrame implements ActionListener {
 		else if (e.getSource() == welLogin){
 			setVisible(false);
 			new LoginGUI();
+		}
+		else if (e.getSource() == welCreate){
+			setVisible(false);
+			new NewAccGUI();
 		}
 
 	}
