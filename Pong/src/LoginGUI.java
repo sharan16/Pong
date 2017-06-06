@@ -50,30 +50,30 @@ public class LoginGUI extends JFrame implements ActionListener{
 		frame.add(passLog); // add text area to frame
 
 		// create button to clear user login 		
-		userClear = new JButton (new ImageIcon ("clear.jpg")); // set image
+		userClear = new JButton (new ImageIcon ("Images/clear.jpg")); // set image
 		userClear.setBounds(676, 422, 40, 40); // set position/size
 		userClear.addActionListener(this); // make button listen to actions
 		frame.add(userClear); // add button to frame
 		
 		// create button to clear password login
-		passClear = new JButton (new ImageIcon ("clear.jpg")); // set image
+		passClear = new JButton (new ImageIcon ("Images/clear.jpg")); // set image
 		passClear.setBounds(676, 547, 40, 40); // set position/size
 		passClear.addActionListener(this); // make button listen to actions
 		frame.add(passClear); // add button to frame
 
 		// create button to login and proceed to play screen
-		loginBtn = new JButton (new ImageIcon ("login.jpg")); // set image
+		loginBtn = new JButton (new ImageIcon ("Images/login.jpg")); // set image
 		loginBtn.setBounds(510, 627, 117, 48); // set position/size
 		loginBtn.addActionListener(this); // make button listen to actions
 		frame.add(loginBtn); // add button to frame
 		
 		// 
-		backBtn = new JButton (new ImageIcon ("backBtn.jpg"));
+		backBtn = new JButton (new ImageIcon ("Images/backBtn.jpg"));
 		backBtn.setBounds(393, 627, 117, 48);
 		backBtn.addActionListener(this);
 		frame.add(backBtn);
 
-		background = new Picture(0,0,new ImageIcon("loginPage.jpg"));
+		background = new Picture(0,0,new ImageIcon("Images/loginPage.jpg"));
 		background.setBounds(0,0,1000,720);
 		frame.add(background);
 
