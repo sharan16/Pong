@@ -17,18 +17,29 @@ public class Paddle extends Thing{
 		this.velY = velY;
 	}
 	public void update(Thing blocks[]){
-		int y;
+		//		int y;
+		//		if(blocks[0].getBody().intersects(this.getBody())){
+		//			y=30;
+		//			System.out.println("Top");
+		//		}
+		//		else if(blocks[1].getBody().intersects(this.getBody())){
+		//			y=660-10-super.getH();
+		//			System.out.println("Bottom");
+		//		}
+		int y=super.getY();
 		if(blocks[0].getBody().intersects(this.getBody())){
-			y=30;
+			y+=1;
+			velY=0;
 			System.out.println("Top");
 		}
 		else if(blocks[1].getBody().intersects(this.getBody())){
-			y=660-10-super.getH();
+			velY=0;
+			y-=1;
 			System.out.println("Bottom");
 		}
 		else{
-		y=super.getY();	
-		y+=velY;
+			y=super.getY();	
+			y+=velY;
 		}
 
 		super.setY(y);

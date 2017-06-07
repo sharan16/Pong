@@ -12,14 +12,14 @@ import java.awt.event.ActionEvent; //Library for the event the actionlistener us
 import java.text.*;
 
 
-public class Game extends JFrame implements ActionListener, KeyListener{
+public class LocalMultiplayerGame extends JFrame implements ActionListener, KeyListener{
 	private Timer timer;
 	private Container frame;
 	private Paddle paddle,paddle2;
 	private Thing blocks[];
 	private Ball ball;
 	
-	public Game() {
+	public LocalMultiplayerGame() {
 		super("Pong");
 		setSize (1022, 776);    // Set the frame's size
 		Dimension dim = Toolkit.getDefaultToolkit ().getScreenSize ();
@@ -59,6 +59,7 @@ public class Game extends JFrame implements ActionListener, KeyListener{
 		paddle.update(blocks);
 		paddle2.update(blocks);
 		ball.update(blocks,paddle,paddle2);
+		playerBot();
 	}
 	public void keyPressed (KeyEvent e)  //Key Pressed Event
 	{
@@ -66,18 +67,10 @@ public class Game extends JFrame implements ActionListener, KeyListener{
 		
 		if(key==KeyEvent.VK_UP){
 			System.out.print("Up");
-			paddle2.setvelY(-10);
+			paddle.setvelY(-10);
 		}
 		if(key==KeyEvent.VK_DOWN){
 			System.out.print("Down");
-			paddle2.setvelY(10);
-		}
-		if(key==KeyEvent.VK_W){
-			System.out.print("Up");
-			paddle.setvelY(-10);
-		}
-		if(key==KeyEvent.VK_S){
-			System.out.print("Up");
 			paddle.setvelY(10);
 		}
 	}
@@ -90,12 +83,20 @@ public class Game extends JFrame implements ActionListener, KeyListener{
 		paddle2.setvelY(0);
 	}
        
+	public void playerBot(){
+		if(paddle2.getY()>ball.getY()){
+			paddle2.setvelY(-3);
+		}
+		else if((paddle2.getY()+paddle2.getH())<ball.getY()){
+			paddle2.setvelY(3);
+		}
+	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Game();
+		new LocalMultiplayerGame();
 	}
 
 }
