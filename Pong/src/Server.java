@@ -45,11 +45,16 @@ public class Server {
 		// Creating inputs and outputs
 		PrintWriter output = new PrintWriter (clientSocket.getOutputStream (), true); 
 		BufferedReader input = new BufferedReader (new InputStreamReader (clientSocket.getInputStream ())); 
+		BufferedReader console = new BufferedReader (new InputStreamReader (System.in));
+		String userInput;
 		String inputLine;
 
 		while ((inputLine = input.readLine ()) != null) {
-			System.out.println ("Server: " + inputLine); 
-			output.println (inputLine);
+			System.out.println ("Client: " + inputLine); 
+			System.out.println ("Server Input: ");
+			while ((userInput = console.readLine ()) != null) {
+				output.println (userInput);
+			}
 		}
 
 		// Closing
