@@ -1,12 +1,9 @@
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import javax.swing.JOptionPane;
 
 /**
  * @author Bikramjit Saini
@@ -14,16 +11,16 @@ import javax.swing.JOptionPane;
  * Desc: Server class
  */
 public class Server {
-	public static void main (String[] args) throws IOException {
+	public static void main (String[] args) throws IOException, InterruptedException {
 		// Creating the ServerSocket
 		ServerSocket serverSocket = null;
 		try {
 			// Specifying the port
-			serverSocket = new ServerSocket (8080);
+			serverSocket = new ServerSocket (18000);
 		}
 		catch (IOException e) {
 			// Sending an error message
-			System.err.println ("Couldn't listen on port: 8080."); 
+			System.err.println ("Couldn't listen on port!"); 
 			System.exit (1); 
 		}
 
@@ -44,16 +41,14 @@ public class Server {
 
 		// Creating inputs and outputs
 		PrintWriter output = new PrintWriter (clientSocket.getOutputStream (), true); 
-		BufferedReader input = new BufferedReader (new InputStreamReader (clientSocket.getInputStream ())); 
-		BufferedReader console = new BufferedReader (new InputStreamReader (System.in));
-		String userInput;
-		String inputLine;
-
-		while ((inputLine = input.readLine ()) != null) {
-			System.out.println ("Client: " + inputLine); 
-			System.out.println ("Server Input: ");
-			while ((userInput = console.readLine ()) != null) {
-				output.println (userInput);
+		BufferedReader input = new BufferedReader (new InputStreamReader (clientSocket.getInputStream ()));
+		boolean keepGoing = true;
+		
+		while (keepGoing == true) {
+			while (true) {
+				output.println ("hello");
+				Thread.sleep (1000);
+				System.out.println (input.readLine ());
 			}
 		}
 
