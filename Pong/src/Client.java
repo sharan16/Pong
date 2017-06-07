@@ -38,12 +38,16 @@ public class Client {
 		// Creating the BufferedReader for the console and a String for the userInput
 		BufferedReader console = new BufferedReader (new InputStreamReader (System.in));
 		String userInput;
+		String inputLine;
 
-		System.out.println ("Input: ");
+		System.out.println ("Client Input: ");
 		while ((userInput = console.readLine ()) != null) {
 			output.println (userInput);
-			System.out.println ("Server: " + input.readLine ());
-			System.out.println ("Input: ");
+			while ((inputLine = input.readLine ()) != null) {
+				System.out.println ("Server: " + inputLine);
+			}
+			/*System.out.println ("Server: " + input.readLine ());
+			System.out.println ("Input: ");*/
 		}
 
 		// Closing
