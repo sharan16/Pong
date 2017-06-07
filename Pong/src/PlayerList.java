@@ -105,6 +105,91 @@ public class PlayerList {
                 }
             }  
         }
+        public void insertionSort (String order, String type) //method for insertion sort algorithm which sorts based on sort order and sort type
+        {
+                for (int j = 1; j<size; j++){
+                        PlayerRecord playerTemp = playerRecordList[j]; 
+                        int i = j;
+
+                        //general functionality: checks previous element to see if greater or less than in alphabetical order and swaps
+                        if (order.equalsIgnoreCase("Top")){ //Ascending Order
+                                if (type.equalsIgnoreCase("User Name"))
+                                {
+                                	 while (i>0 && playerTemp.getUserName().compareToIgnoreCase(playerRecordList[i-1].getUserName()) < 0)
+                                     {
+                                		 playerRecordList[i] = playerRecordList[i-1];
+                                         i--;
+                                     }
+                                     playerRecordList[i] = playerTemp; 
+                                }
+                                /*else if (type.equalsIgnoreCase("Wins"))
+                                {
+                                	while (i>0 && playerTemp.getWins().compareToIgnoreCase(playerRecordList[i-1].getWins()) < 0)
+                                    {
+                                    	playerRecordList[i] = playerRecordList[i-1];
+                                        i--;
+                                    }
+                                    playerRecordList[i]=playerTemp;
+                                }*/
+                                else if (type.equalsIgnoreCase("Losses"))
+                                {
+                                	 while (i>0 && playerTemp.getLosses()<playerRecordList[i-1].getLosses())
+                                     {
+                                     	playerRecordList[i] = playerRecordList[i-1];
+                                         i--;
+                                     }
+                                     playerRecordList[i]=playerTemp;
+                                }
+                                else if (type.equalsIgnoreCase("Win %"))
+                                {
+                                	while (i>0 && playerTemp.getWinPercentage()<playerRecordList[i-1].getWinPercentage())
+                                    {
+                                		playerRecordList[i] = playerRecordList[i-1];
+                                        i--;
+                                    }
+                                    playerRecordList[i]=playerTemp;
+                                }
+                        }
+                        else{ //Descending Order
+                                if (type.equalsIgnoreCase("User Name"))
+                                {
+                                	while (i>0 && playerTemp.getUserName().compareToIgnoreCase(playerRecordList[i-1].getUserName()) > 0)
+                                    {
+                                		playerRecordList[i] = playerRecordList[i-1];
+                                        i--;
+                                    }
+                                    playerRecordList[i]=playerTemp;
+                                }
+                               /* else if (type.equalsIgnoreCase("Wins"))
+                                {
+                                	while (i>0 && playerTemp.getWins().compareToIgnoreCase(playerRecordList[i-1].getWins()) > 0)
+                                    {
+                                    	playerRecordList[i] = playerRecordList[i-1];
+                                        i--;
+                                    }
+                                    playerRecordList[i]=playerTemp;
+                                }*/
+                                else if (type.equalsIgnoreCase("Losses"))
+                                {
+                                	while (i>0 && playerTemp.getLosses()>playerRecordList[i-1].getLosses())
+                                    {
+                                		playerRecordList[i] = playerRecordList[i-1];
+                                        i--;
+                                    }
+                                    playerRecordList[i]=playerTemp;
+                                }
+                                else if (type.equalsIgnoreCase("Win %"))
+                                {
+                                	while (i>0 && playerTemp.getWinPercentage()>playerRecordList[i-1].getWinPercentage())
+                                    {
+                                    	playerRecordList[i] = playerRecordList[i-1];
+                                        i--;
+                                    }
+                                    playerRecordList[i]=playerTemp;
+                                }
+                        }//End Else
+                }//End For
+        }
         //Method For Binary Search (UserName)
         public int binarySearchUser(String searchKey)
         {
@@ -169,8 +254,6 @@ public class PlayerList {
         //Self-Testing Main
         static void main (String args[])
         {
-        	//
+        	
         } //End Main
 } //End Program
-
-
