@@ -15,7 +15,6 @@ public class Client {
 	public static void main (String[] args) throws IOException {
 		// Creating the variable for the hostname
 		String serverHostName = "localhost";
-
 		System.out.println ("Attempting to connect to host " + serverHostName + " on port 8080");
 
 		// Creating the socket and input and outputs
