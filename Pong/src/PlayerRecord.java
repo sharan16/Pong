@@ -77,7 +77,7 @@ public class PlayerRecord {
 	public void process(String record)
 	{
 		String word [];
-        word = record.split(";");
+        word = record.split(",");
 
         this.userName = word [0];
         this.passWord = word [1];
@@ -96,7 +96,7 @@ public class PlayerRecord {
     public static void main (String args[])
     {
     	//Variable For Record
-        String record  = "Raman_2ESY, pass123, 9, 1, 90, 1000";
+        String record  = "Raman_2ESY,pass123,9,1,90,1000";
 
         //Create PlayerRecord Object
         PlayerRecord playerRecord = new PlayerRecord();
@@ -118,6 +118,16 @@ public class PlayerRecord {
         System.out.println("Tokens: " + playerRecord.getTokens());
     } //End Main
 } // End Program
+
+      
+        
+       
+
+
+
+      
+        
+       
 
       
         
