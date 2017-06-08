@@ -1,0 +1,6 @@
+Raman_2ESY,pass123,9,1,90,1000
+LilPrettyFlaco,pass987,10,1,95,500
+DaBikSta,passpass,0,510,0,250
+Raman_S19,pAsSwOrD,5000,1500,85,0
+HammerHill,wordP,50,150,45,260
+Jaggers,wordpass,0,0,0,0
