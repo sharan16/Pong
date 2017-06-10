@@ -16,7 +16,7 @@ public class Server {
 		ServerSocket serverSocket = null;
 		try {
 			// Specifying the port
-			serverSocket = new ServerSocket (18000);
+			serverSocket = new ServerSocket (9000);
 		}
 		catch (IOException e) {
 			// Sending an error message
@@ -43,11 +43,13 @@ public class Server {
 		PrintWriter output = new PrintWriter (clientSocket.getOutputStream (), true); 
 		BufferedReader input = new BufferedReader (new InputStreamReader (clientSocket.getInputStream ()));
 		boolean keepGoing = true;
+		int i = 2;
 		
 		while (keepGoing == true) {
 			while (true) {
-				output.println ("hello");
-				Thread.sleep (1000);
+				output.println (i);
+				i += 2;
+				Thread.sleep (2000);
 				System.out.println (input.readLine ());
 			}
 		}
