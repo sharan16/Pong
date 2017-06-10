@@ -22,7 +22,7 @@ public class Client {
 		BufferedReader input = null;
 
 		try {
-			serverSocket = new Socket(serverHostName, 18000);
+			serverSocket = new Socket(serverHostName, 9000);
 			output = new PrintWriter (serverSocket.getOutputStream (), true);
 			input = new BufferedReader (new InputStreamReader (serverSocket.getInputStream ()));
 		} catch (UnknownHostException e) {
@@ -36,11 +36,13 @@ public class Client {
 		// Creating the BufferedReader for the console and a String for the userInput
 		BufferedReader console = new BufferedReader (new InputStreamReader (System.in));
 		boolean keepGoing = true;
+		int i = 1;
 		
 		while (keepGoing == true) {
 			while (true) {
-				output.println ("hi");
-				Thread.sleep (1000);
+				output.println (i);
+				i += 2;
+				Thread.sleep (2000);
 				System.out.println (input.readLine ());
 			}
 		}
