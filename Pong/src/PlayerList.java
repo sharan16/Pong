@@ -154,7 +154,7 @@ public class PlayerList {
 		PrintWriter file;
 		try {
 			file = new PrintWriter(new FileWriter("Highscores.txt"));
-			for (int i = 0; i < playerRecordList.length; i++) {
+			for (int i = 0; i < size; i++) {
 				file.println(playerRecordList[i].toString());
 			}
                         file.close();
