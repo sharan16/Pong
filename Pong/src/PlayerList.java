@@ -118,6 +118,14 @@ public class PlayerList {
                 }
             }
         }
+        public void increment(PlayerRecord record,boolean win){
+        	if(win){
+        		playerRecordList[binarySearchUser(record.getUserName())].setWins(playerRecordList[binarySearchUser(record.getUserName())].getWins()+1);
+        	}
+        	else{
+        		playerRecordList[binarySearchUser(record.getUserName())].setLosses(playerRecordList[binarySearchUser(record.getUserName())].getLosses()+1);
+        	}
+        }
         //Method For Binary Search (UserName)
         public int binarySearchUser(String searchKey)
         {
