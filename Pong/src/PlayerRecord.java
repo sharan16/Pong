@@ -10,6 +10,14 @@ public class PlayerRecord {
 	private int wins, losses, tokens;
 	private double winPercentage;
 	
+	public PlayerRecord(String userName,String passWord,int wins,int losses,int tokens){
+			this.userName=userName;
+			this.passWord=passWord;
+			this.wins=wins;
+			this.losses=losses;
+			this.winPercentage=wins/losses;
+			this.tokens=tokens;
+		}
 	//Method To Set User Name
 	public void setUserName (String userName)
 	{
@@ -34,11 +42,13 @@ public class PlayerRecord {
 	public void setWinPercentage (int winPercentage)
 	{
 		this.winPercentage = winPercentage;
+		setWinPercentage(wins/losses);
 	}
 	//Method To Set Tokens 
 	public void setTokens (int tokens)
 	{
 		this.tokens = tokens;
+		setWinPercentage(wins/losses);
 	}
 	//Method To Get User Name 
 	public String getUserName()
