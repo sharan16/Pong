@@ -9,7 +9,9 @@ public class PlayerRecord {
 	private String userName, passWord;
 	private int wins, losses, tokens;
 	private double winPercentage;
-	
+	public PlayerRecord(){
+			
+		}
 	public PlayerRecord(String userName,String passWord,int wins,int losses,int tokens){
 			this.userName=userName;
 			this.passWord=passWord;
