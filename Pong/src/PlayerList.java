@@ -150,6 +150,19 @@ public class PlayerList {
             }
             return -1; //If Nothing Found
         }
+        public void writeFile(){
+		PrintWriter file;
+		try {
+			file = new PrintWriter(new FileWriter("Highscores.txt"));
+			for (int i = 0; i < playerRecordList.length; i++) {
+				file.println(playerRecordList[i].toString());
+			}
+                        file.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
         //Method To Load File
         public void loadFile(String fileName) throws IOException //method to load from file into VehicleList array
         { 
