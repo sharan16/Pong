@@ -5,10 +5,12 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class NewAccGUI extends JFrame implements ActionListener{
@@ -20,6 +22,8 @@ public class NewAccGUI extends JFrame implements ActionListener{
 
 	Picture background;
 	Color color;
+	
+	private PlayerList list;
 
 	public NewAccGUI() {
 		super ("New Account Page");// name of frame
@@ -105,8 +109,40 @@ public class NewAccGUI extends JFrame implements ActionListener{
 			tokField.setText("");
 		}
 		else if (e.getSource() == createAcc){
-			setVisible(false);
-			new MenuGUI();
+			list = new PlayerList();
+			
+			String newUser = "";
+			String name = nameField.getText();
+			String pass = passField.getText();
+			int tok = Integer.parseInt(tokField.getText());
+			newUser = name+","+pass+",0,0,0,"+tok;
+			System.out.println(newUser);
+			
+			try {
+				list.loadFile("TextFiles/test.txt");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			PlayerRecord pInfo = new PlayerRecord();
+			pInfo.process(newUser);
+			
+			int loc =
+					list.binarySearchUser(pInfo.getUserName());
+
+			if (loc < 0){
+				JOptionPane.showMessageDialog(null, "Name is unique");
+				list.insert(pInfo);
+				list.writeFile();
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "Username '"+name+"' already exist");
+			}
+			
+			
+			//setVisible(false);
+			//new MenuGUI();
 		}
 		else if (e.getSource() == back){
 			setVisible(false);
