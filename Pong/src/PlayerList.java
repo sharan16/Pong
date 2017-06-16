@@ -154,13 +154,29 @@ public class PlayerList {
         public void loadFile(String fileName) throws IOException //method to load from file into VehicleList array
         { 
                 String playerRecord[]; //Declare String Array
-  
+                int lines = 0;
+
+        		// setting up the file reader to read the file
+        		BufferedReader file=new BufferedReader(new FileReader(fileName));
+        		
+        		// while there is info to read
+        		while(file.readLine() != null)
+        		{
+        			// increment the lines variable by 1
+        			lines++;
+        		}
+        		
+        		// print out the lines of data
+        		System.out.println(lines);
+        		
+        		// closing the file 
+        		file.close();
+        		
                 FileReader fr = new FileReader (fileName);
                 BufferedReader inputFile = new BufferedReader (fr);
 
-                int size = Integer.parseInt(inputFile.readLine()); //Get Size Of Array
 
-                playerRecord = new String [size]; //Declare & Create String Array
+                playerRecord = new String [lines]; //Declare & Create String Array
 
                 //Loop Through Array 
                 for (int j = 0; j < playerRecord.length; j++) 
