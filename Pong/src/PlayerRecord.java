@@ -56,13 +56,13 @@ public class PlayerRecord {
 	public void setWinPercentage (int winPercentage)
 	{
 		this.winPercentage = winPercentage;
-		setWinPercentage(wins/losses);
+		
 	}
 	//Method To Set Tokens 
 	public void setTokens (int tokens)
 	{
 		this.tokens = tokens;
-		setWinPercentage(wins/losses);
+	
 	}
 	//Method To Get User Name 
 	public String getUserName()
