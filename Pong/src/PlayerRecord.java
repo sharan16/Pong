@@ -34,11 +34,23 @@ public class PlayerRecord {
 	public void setWins (int wins)
 	{
 		this.wins = wins;
+		if(losses==0){
+				setWinPercentage(0);
+			}
+			else{
+			setWinPercentage(wins/losses);
+			}
 	}
 	//Method To Set Wins
 	public void setLosses (int losses)
 	{
 		this.losses = losses;
+		if(losses==0){
+				setWinPercentage(0);
+			}
+			else{
+			setWinPercentage(wins/losses);
+			}
 	}
 	//Method To Set Win Percentage
 	public void setWinPercentage (int winPercentage)
