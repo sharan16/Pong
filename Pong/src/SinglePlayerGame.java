@@ -125,10 +125,14 @@ public class SinglePlayerGame extends JFrame implements ActionListener, KeyListe
 		if(paddle.getScore()>1){//If the game is done
 			JOptionPane.showMessageDialog(null,paddle.getUserName()+" won\nFinal Score " + paddle.getScore() +"-"+paddle2.getScore());
 			highScoreUpdate(true);
+			timer.stop();
+			dispose();
 		}
 		else if(paddle2.getScore()>1){//If the game is done
 			JOptionPane.showMessageDialog(null,paddle2.getUserName()+" won\nFinal Score " + paddle2.getScore() +"-"+paddle.getScore());
 			highScoreUpdate(false);
+			timer.stop();
+			dispose();
 		}
 		if(spawn){// If the ball needs to respawn
 			ball.setY(paddle.getY()+paddle.getH()/2-10);
