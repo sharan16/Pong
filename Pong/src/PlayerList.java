@@ -130,7 +130,7 @@ public class PlayerList {
 
 	public void incrementTok(PlayerRecord record, int amount, boolean type)
 	{
-		if (type = true){
+		if (type == true){
 			playerRecordList[linearSearch(record.getUserName())].setTokens(playerRecordList[linearSearch(record.getUserName())].getTokens()+amount);
 		}
 		else{
