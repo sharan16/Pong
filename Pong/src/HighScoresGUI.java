@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,11 +30,17 @@ public class HighScoresGUI extends JFrame implements ActionListener {
 	Object[] possibilities = {"Rank", "Name", "User"}; // create button objects
 
 	Picture background;
-	public HighScoresGUI() {
+
+	PlayerList list;
+
+	PlayerRecord p[];
+	public HighScoresGUI(PlayerRecord p[]) {
 		super ("Highscores Page");
 		setSize (1022, 776); // set size of frame
 		frame = getContentPane();
 		frame.setLayout (null);
+
+		this.p = p;
 
 		Color lightBlue = new Color(121,135,172); // declare and create colors
 		Color darkBlue = new Color (22,39,86);
@@ -69,7 +76,8 @@ public class HighScoresGUI extends JFrame implements ActionListener {
 		search.addActionListener(this);
 		frame.add(search);
 
-		record = new JTextArea ("Rank:\t\tName:\t\tWins:");
+		// "Rank:\t\tName:\t\tWins:"
+		record = new JTextArea ();
 		record.setBounds(85, 125, 843, 500);
 		record.setForeground(darkBlue);
 		record.setFont(font);
@@ -91,10 +99,25 @@ public class HighScoresGUI extends JFrame implements ActionListener {
 	public void actionPerformed (ActionEvent e){
 		if (e.getSource() == back){
 			setVisible(false);
-			new MenuGUI();
+			new MenuGUI(this.p);
 		}
 		else if (e.getSource() == load){
-			inputLoad = JOptionPane.showInputDialog("Enter file to load:");
+			inputLoad = JOptionPane.showInputDialog("Enter file to load:","Highscores.txt");
+
+			try {
+				list.loadFile(inputLoad);
+				
+				p = list.getList();
+				String scores = p.toString();
+				record.setText(scores);
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Please try another file.",null, JOptionPane.ERROR_MESSAGE);
+			}
+			
+
 		}
 		else if (e.getSource() == save){
 			inputSave = JOptionPane.showInputDialog("Enter file name to save as:");
@@ -106,7 +129,10 @@ public class HighScoresGUI extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new HighScoresGUI();
+		PlayerRecord[] player=new PlayerRecord[2];
+		player[0]=new PlayerRecord("Campos","Pass",1,1,1);
+		player[1]=new PlayerRecord("Sharan","Pass",1,1,1);
+		new HighScoresGUI(player);
 	}
 
 }
