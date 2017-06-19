@@ -20,14 +20,17 @@ public class PongGUI extends JFrame implements ActionListener {
 	
 	Color color = new Color(121,135,172);
 	Font font = new Font ("arialbd",Font.BOLD, 28);// declare and initialize font
-	
-	public PongGUI() {
+		
+	PlayerRecord p[];
+	public PongGUI(PlayerRecord p[]) {
 		// create and set size of welcome frame
 		super ("Welcome Page"); // name of frame
 		setSize (1022, 776);
 		welPage = getContentPane(); 
 		welPage.setLayout (null);
 
+		this.p = p;
+		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
@@ -60,16 +63,19 @@ public class PongGUI extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == welLogin){
 			setVisible(false);
-			new LoginGUI();
+			new LoginGUI(this.p);
 		}
 		else if (e.getSource() == welCreate){
 			setVisible(false);
-			new NewAccGUI();
+			new NewAccGUI(this.p);
 		}
 
 	}
 	public static void main(String[] args) {
-		new PongGUI();
+		PlayerRecord[] player=new PlayerRecord[2];
+		player[0]=new PlayerRecord("Campos","Pass",1,1,1);
+		player[1]=new PlayerRecord("Sharan","Pass",1,1,1);
+		new PongGUI(player);
 
 	}
 
