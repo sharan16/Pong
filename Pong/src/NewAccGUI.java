@@ -22,21 +22,22 @@ public class NewAccGUI extends JFrame implements ActionListener{
 
 	Picture background;
 	Color color;
-	
-	private PlayerList list;
 
-	public NewAccGUI() {
+	private PlayerList list;
+	PlayerRecord p[];
+	public NewAccGUI(PlayerRecord p[]) {
 		super ("New Account Page");// name of frame
 		setSize (1022, 776); // set size of frame
 		frame = getContentPane(); 
 		frame.setLayout (null);
 
+		this.p = p;
+		
 		// center GUI window
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
 		color = new Color(121,135,172); // declare and create colors
-
 
 		Font font = new Font ("arialbd",Font.BOLD, 28);// declare and create font
 
@@ -110,49 +111,52 @@ public class NewAccGUI extends JFrame implements ActionListener{
 		}
 		else if (e.getSource() == createAcc){
 			list = new PlayerList();
-			
+
 			String newUser = "";
 			String name = nameField.getText();
 			String pass = passField.getText();
 			int tok = Integer.parseInt(tokField.getText());
 			newUser = name+","+pass+",0,0,0,"+tok;
 			System.out.println(newUser);
-			
+
 			try {
-				list.loadFile("TextFiles/test.txt");
+				list.loadFile("Highscores.txt");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-			PlayerRecord pInfo = new PlayerRecord();
-			pInfo.process(newUser);
-			
+
+			p[0].process(newUser);
+
 			int loc =
-					list.binarySearchUser(pInfo.getUserName());
+					list.linearSearch(p[0].getUserName());
 
 			if (loc < 0){
-				JOptionPane.showMessageDialog(null, "Name is unique");
-				list.insert(pInfo);
+				JOptionPane.showMessageDialog(null, "Account Created");
+				list.insert(p[0]);
 				list.writeFile();
+				
+				setVisible(false);
+				new MenuGUI(this.p);
 			}
 			else{
 				JOptionPane.showMessageDialog(null, "Username '"+name+"' already exist");
 			}
-			
-			
-			//setVisible(false);
-			//new MenuGUI();
+
 		}
 		else if (e.getSource() == back){
 			setVisible(false);
-			new PongGUI();
+			new PongGUI(this.p);
 		}
 
 	}
 	public static void main(String[] args) {
-		new NewAccGUI();
+		PlayerRecord[] player=new PlayerRecord[2];
+		player[0]=new PlayerRecord("Campos","Pass",1,1,1);
+		player[1]=new PlayerRecord("Sharan","Pass",1,1,1);
+		new NewAccGUI(player);
 
 	}
 
 }
+
