@@ -9,35 +9,40 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-
+/* Author: William Huynh
+ * Date: June. 2017
+ * Description - Graphical user interface for new account page. User creates a new account here
+ * Method List:
+ * public void actionPerformed (ActionEvent e) - performs action events
+ */
 public class NewAccGUI extends JFrame implements ActionListener{
-
-	Container frame;
-
-	JTextArea nameField, passField, tokField;
-	JButton createAcc, back, clearName, clearPass, clearTok;
-
-	Picture background;
-	Color color;
-
-	private PlayerList list;
-	PlayerRecord p[];
+	// declare variable for:
+	private Container frame; // frame
+	private JTextArea nameField, passField, tokField; // create account text areas
+	private JButton createAcc, back, clearName, clearPass, clearTok; // buttons
+	private Picture background; // backgroud image
+	private PlayerList list; // player list object
+	private PlayerRecord p[]; // player record array
 	public NewAccGUI(PlayerRecord p[]) {
 		super ("New Account Page");// name of frame
 		setSize (1022, 776); // set size of frame
 		frame = getContentPane(); 
 		frame.setLayout (null);
+		setResizable(false);
 
-		this.p = p;
-		
+		this.p = p; // initialize player record array
+
 		// center GUI window
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		color = new Color(121,135,172); // declare and create colors
+		Color color = new Color(121,135,172); // declare and create colors
+
+		JDialog.setDefaultLookAndFeelDecorated(true);// set jdialog look and feel
 
 		Font font = new Font ("arialbd",Font.BOLD, 28);// declare and create font
 
@@ -92,71 +97,67 @@ public class NewAccGUI extends JFrame implements ActionListener{
 		back.addActionListener(this); // make button listen to actions
 		frame.add(back); // add button to frame
 
+		// sets image and size/coordinates of background image
 		background = new Picture (0,0,new ImageIcon ("Images/createPage.jpg"));
 		background.setBounds(0, 0, 1000, 720);
 		frame.add(background);
 
-		setVisible(true);
-	}
-
+		setVisible(true); // set frame to visible
+	} // perform action events
 	public void actionPerformed (ActionEvent e){
-		if (e.getSource() == clearName){
+		if (e.getSource() == clearName){ // clear name text field
 			nameField.setText("");
 		}
-		else if (e.getSource() == clearPass){
+		else if (e.getSource() == clearPass){ // clear password text field
 			passField.setText("");
 		}
-		else if (e.getSource() == clearTok){
+		else if (e.getSource() == clearTok){ //clear token text field
 			tokField.setText("");
 		}
-		else if (e.getSource() == createAcc){
-			list = new PlayerList();
+		else if (e.getSource() == createAcc){ // is create button is pressed
+			list = new PlayerList(); // create player list object
 
 			String newUser = "";
+			// get user name, password, token input
 			String name = nameField.getText();
 			String pass = passField.getText();
 			int tok = Integer.parseInt(tokField.getText());
-			newUser = name+","+pass+",0,0,0,"+tok;
+			newUser = name+","+pass+",0,0,0,"+tok; // format and test user to player record
 			System.out.println(newUser);
 
 			try {
-				list.loadFile("Highscores.txt");
+				list.loadFile("Highscores.txt"); // read file
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
-			p[0].process(newUser);
+			p[0].process(newUser); // process player record
 
-			int loc =
-					list.linearSearch(p[0].getUserName());
+			int loc = 
+					list.linearSearch(p[0].getUserName()); // searches name
 
-			if (loc < 0){
+			if (loc < 0){ // if name not found - creates an account
 				JOptionPane.showMessageDialog(null, "Account Created");
 				list.insert(p[0]);
 				list.writeFile();
-				
-				setVisible(false);
-				new MenuGUI(this.p);
+
+				setVisible(false); // close frame
+				new MenuGUI(this.p); // open MenuGUI while passing player record array
 			}
-			else{
+			else{ // if name found - display error message
 				JOptionPane.showMessageDialog(null, "Username '"+name+"' already exist");
 			}
-
-		}
+		} // closes frame and opens PongGUI while passing player record array
 		else if (e.getSource() == back){
 			setVisible(false);
 			new PongGUI(this.p);
 		}
-
-	}
+	}// self testing
 	public static void main(String[] args) {
 		PlayerRecord[] player=new PlayerRecord[2];
 		player[0]=new PlayerRecord("Campos","Pass",1,1,1);
 		player[1]=new PlayerRecord("Sharan","Pass",1,1,1);
 		new NewAccGUI(player);
-
 	}
-
 }
-
