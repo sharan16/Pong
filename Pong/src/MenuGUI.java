@@ -3,10 +3,17 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 public class MenuGUI extends JFrame implements ActionListener{
 	Container frame;
@@ -15,6 +22,7 @@ public class MenuGUI extends JFrame implements ActionListener{
 
 	Picture background;
 	PlayerRecord p[];
+	PlayerList list;
 	public MenuGUI(PlayerRecord p[]) {
 
 		super ("Menu Page");// name of frame
@@ -24,7 +32,9 @@ public class MenuGUI extends JFrame implements ActionListener{
 
 		this.p = p;
 		System.out.println(this.p[0].toString());
-		
+
+		JDialog.setDefaultLookAndFeelDecorated(true);// set jdialog look and feel
+
 		// center GUI window
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -68,8 +78,76 @@ public class MenuGUI extends JFrame implements ActionListener{
 
 	public void actionPerformed (ActionEvent e){
 		if (e.getSource() == play){
-			setVisible(false);
 
+			if (p[0].getTokens() == 0){
+				JOptionPane.showMessageDialog(null, "Insuffient Tokens.\nPlease Visit the Store.",null,JOptionPane.ERROR_MESSAGE);
+			}
+			else{
+				
+				list = new PlayerList();
+				try {
+					list.loadFile("Highscores.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				p[0].setTokens(p[0].getTokens()-1);
+				list.incrementTok(p[0],1,false);
+				list.writeFile();
+				setVisible(false);
+
+				Object[] gameType = {"Single Player", "Local Multiplayer"};
+				Object[] gameDiff = {"Easy", "Medium", "Hard"};
+
+				int result = JOptionPane.showOptionDialog(null, "Choose Game Type",
+						null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+						null, gameType, gameType[0]);
+
+				if (result == JOptionPane.YES_OPTION){
+
+					int find = list.linearSearch("Computer");
+
+					PlayerRecord players[] = new PlayerRecord[2];
+					players[0] = p[0];
+					players[1] = list.getList()[find];
+
+					int result2 = JOptionPane.showOptionDialog(null, "Choose Game Difficulty",
+							null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+							null, gameDiff, gameDiff[0]);
+
+					if (result2 == JOptionPane.YES_NO_OPTION){
+						new SinglePlayerGame(0,false,players);
+					}
+					else if (result2 == JOptionPane.NO_OPTION){
+						new SinglePlayerGame(1,false,players);
+					}
+					else{
+						new SinglePlayerGame(2,false,players);
+					}
+				}
+				else{
+					int find = list.linearSearch("Guest");
+
+					PlayerRecord players[] = new PlayerRecord[2];
+					players[0] = p[0];
+					players[1] = list.getList()[find];
+
+					int result2 = JOptionPane.showOptionDialog(null, "Choose Game Difficulty",
+							null, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+							null, gameDiff, gameDiff[0]);
+
+					if (result2 == JOptionPane.YES_NO_OPTION){
+						new SinglePlayerGame(0,true,players);
+					}
+					else if (result2 == JOptionPane.NO_OPTION){
+						new SinglePlayerGame(1,true,players);
+					}
+					else{
+						new SinglePlayerGame(2,true,players);
+					}
+				}
+			}
 		}
 		else if (e.getSource() == store){
 			setVisible(false);
@@ -86,6 +164,7 @@ public class MenuGUI extends JFrame implements ActionListener{
 		else if (e.getSource() == exit){
 			System.exit(0);
 		}
+
 	}
 	public static void main(String[] args) {
 		PlayerRecord[] player=new PlayerRecord[2];
