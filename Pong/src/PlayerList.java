@@ -128,11 +128,14 @@ public class PlayerList {
 		}
 	}
 
-	public void incrementTok(PlayerRecord record, int amount)
+	public void incrementTok(PlayerRecord record, int amount, boolean type)
 	{
-
-		playerRecordList[linearSearch(record.getUserName())].setTokens(playerRecordList[linearSearch(record.getUserName())].getTokens()+amount);
-
+		if (type = true){
+			playerRecordList[linearSearch(record.getUserName())].setTokens(playerRecordList[linearSearch(record.getUserName())].getTokens()+amount);
+		}
+		else{
+			playerRecordList[linearSearch(record.getUserName())].setTokens(playerRecordList[linearSearch(record.getUserName())].getTokens()-amount);
+		}
 	}
 	//Method For Binary Search (UserName)
 	public int binarySearchUser(String searchKey)
