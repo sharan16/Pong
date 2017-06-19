@@ -5,14 +5,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 /**
- * 
- */
-
-/**
- * @author William
- *
+ * @author William Huynh
+ * Date: May. 2017
+ * Description: Picture class
  */
 public class Picture extends JComponent {
 
